@@ -1,14 +1,21 @@
 <%- model_class = Music -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+    <title>><%=t '.title', :default => model_class.model_name.human.pluralize %></title>
+    <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+    <p class="lead">These are my played musics on
+        <%= link_to t('.youtube', :default => t("helpers.links.youtube")),
+            "http://www.youtube.com/user/Sukesan1984",
+            :class => 'btn btn-link' %>.</p>
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:composer) %></th>
       <th><%=t '.music_sheet', :default => t("helpers.music_sheet") %></th>
-      <th>Downloads</th>
+      <th>Total Downloads</th>
     </tr>
   </thead>
   <tbody>
@@ -16,9 +23,10 @@
       <tr>
         <td><%= music.title %></td>
         <td><%= music.description %></td>
+        <td><%= music.composer %></td>
         <td><%= link_to t('.download', :default => t("helpers.links.download")),
             download_music_path(music),
-            :class => 'btn btn-success' %></td>
+            :class => 'btn btn-primary' %></td>
         <td><%= music.num_download %></td>
       </tr>
     <% end %>
