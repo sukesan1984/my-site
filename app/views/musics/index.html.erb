@@ -1,0 +1,26 @@
+<%- model_class = Music -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%=t '.music_sheet', :default => t("helpers.music_sheet") %></th>
+      <th>Downloads</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @musics.each do |music| %>
+      <tr>
+        <td><%= music.title %></td>
+        <td><%= music.description %></td>
+        <td><%= link_to t('.download', :default => t("helpers.links.download")),
+            download_music_path(music),
+            :class => 'btn btn-success' %></td>
+        <td><%= music.num_download %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,4 +1,15 @@
 MySite::Application.routes.draw do
+  resources :musics,only: ['index', 'download', 'show'] do
+      get :download, on: :member
+  end
+
+
+  resources :posts do
+      get :act1, on: :member
+  end
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
