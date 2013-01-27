@@ -5,7 +5,14 @@
     <p class="lead">These are my played musics on
         <%= link_to t('.youtube', :default => t("helpers.links.youtube")),
             "http://www.youtube.com/user/Sukesan1984",
-            :class => 'btn btn-link' %>.</p>
+            :class => 'btn btn-link' %><br>
+            If you download the sheet, please subscribe me on Youtube or like Facebook page.<br></p>
+        <%= link_to t('.subscribe', :default => t("helpers.links.subscribe on youtube")),
+            "http://www.youtube.com/subscription_center?add_user=Sukesan1984",
+            :class => 'btn btn-link' %><br>
+        <%= link_to t('.FacebookPage', :default => t("helpers.links.Facebook page")),
+            "http://www.facebook.com/sukesan1984page",
+            :class => 'btn btn-link' %><br>
 </div>
 
 <table class="table table-striped">
