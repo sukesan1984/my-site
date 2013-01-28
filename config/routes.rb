@@ -8,6 +8,8 @@ MySite::Application.routes.draw do
       get :act1, on: :member
   end
 
+  resources :games
+
 
 
   # The priority is based upon order of creation:
