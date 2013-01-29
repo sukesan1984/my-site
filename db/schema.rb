@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127103225) do
+ActiveRecord::Schema.define(:version => 20130129154415) do
+
+  create_table "download_histories", :force => true do |t|
+    t.string   "ip_address"
+    t.string   "download_type"
+    t.integer  "target_id"
+    t.integer  "download_count"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "download_histories", ["ip_address", "target_id"], :name => "index_download_histories_on_ip_address_and_target_id"
+
+  create_table "music_sheets", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image_url"
+    t.string   "num_download"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "musics", :force => true do |t|
     t.string   "title"
@@ -20,6 +40,13 @@ ActiveRecord::Schema.define(:version => 20130127103225) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "composer"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end
