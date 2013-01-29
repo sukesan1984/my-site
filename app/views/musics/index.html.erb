@@ -1,45 +1,58 @@
 <%- model_class = Music -%>
 <%= render 'shared/common_header' %>
-<div class="page-header">
-    <title>><%=t '.title', :default => model_class.model_name.human.pluralize %></title>
-    <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-    <p class="lead">These are my played musics on
-        <%= link_to t('.youtube', :default => t("helpers.links.youtube")),
-            "http://www.youtube.com/user/Sukesan1984",
-            :class => 'btn btn-link' %><br>
-            If you download the sheet, please subscribe me on Youtube or like Facebook page.<br></p>
-    <iframe src="http://www.youtube.com/subscribe_widget?p=Sukesan1984" 
-       style="overflow: hidden; height: 105px; width: 300px; border: 0;" 
-       scrolling="no" frameBorder="0">
-   </iframe><br>
 
-   <iframe src="//www.facebook.com/plugins/like.php?locale=en_US&href=http%3A%2F%2Fwww.facebook.com%2Fsukesan1984page&amp;send=false&amp;layout=standard&amp;width=400&amp;show_faces=false&amp;font=arial&amp;colorscheme=light&amp;action=like&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:400px; height:35px;" allowTransparency="true"></iframe>
+<div class="container">
+    <div class="hero-unit">
+        <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+        <p class="lead">These are my played musics on
+            <%= link_to t('.youtube', :default => t("helpers.links.youtube")),
+                "http://www.youtube.com/user/Sukesan1984",
+                :class => 'btn btn-link' %><br>
+                If you download the sheet, please subscribe me on Youtube or like Facebook page.<br>
+        </p>
+    
+       <p class="yotube">
+           <iframe src="http://www.youtube.com/subscribe_widget?p=Sukesan1984" 
+               style="overflow: hidden; height: 105px; width: 300px; border: 0;" 
+               scrolling="no" frameBorder="0">
+           </iframe><br>
+       </p>
+    
+       <p class="facebook">
+       <iframe src="//www.facebook.com/plugins/like.php?locale=en_US&href=http%3A%2F%2Fwww.facebook.com%2Fsukesan1984page&amp;send=false&amp;layout=standard&amp;width=400&amp;show_faces=false&amp;font=arial&amp;colorscheme=light&amp;action=like&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:400px; height:35px;" allowTransparency="true"></iframe>
+        </p>
+    
+    </div>
+    
+    <section class="-download">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= model_class.human_attribute_name(:title) %></th>
+          <th><%= model_class.human_attribute_name(:description) %></th>
+          <th><%= model_class.human_attribute_name(:composer) %></th>
+          <th><%=t '.music_sheet', :default => t("helpers.music_sheet") %></th>
+          <th>Total Downloads</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @musics.each do |music| %>
+          <tr>
+            <td><%= music.title %></td>
+            <td><%= music.description %></td>
+            <td><%= music.composer %></td>
+            <td><%= link_to t('.download', :default => t("helpers.links.download")),
+                download_music_path(music),
+                :class => 'btn btn-primary' %></td>
+            <td><%= music.num_download %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </section>
+
 </div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:composer) %></th>
-      <th><%=t '.music_sheet', :default => t("helpers.music_sheet") %></th>
-      <th>Total Downloads</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @musics.each do |music| %>
-      <tr>
-        <td><%= music.title %></td>
-        <td><%= music.description %></td>
-        <td><%= music.composer %></td>
-        <td><%= link_to t('.download', :default => t("helpers.links.download")),
-            download_music_path(music),
-            :class => 'btn btn-primary' %></td>
-        <td><%= music.num_download %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-9321975971123036";
 /* musics */
@@ -51,3 +64,16 @@ google_ad_height = 90;
 <script type="text/javascript"
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8468750-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
