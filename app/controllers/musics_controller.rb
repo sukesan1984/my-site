@@ -10,10 +10,25 @@ class MusicsController < ApplicationController
     end
   end
 
+  # TODO add Test
   def download
     @music = Music.find(params[:id])
-    @music.num_download += 1
-    send_file("public/music_sheet/" + @music.title + ".zip");
+    send_file("public/music_sheet/" + @music.title + ".zip")
+    @history = DownloadHistory.find_by_ip_address_and_target_id(request.remote_ip, params[:id])
+    if @history
+        @history.download_count += 1
+        @history.save()
+        return if ( @history.updated_at.to_date == Date.today )
+        @music.num_download += 1
+    else
+        @history = DownloadHistory.new(
+            :target_id     => params[:id],
+            :download_type => "music_sheet",
+            :download_count => 1,
+            :ip_address => request.remote_ip )
+        @history.save()
+        @music.num_download += 1
+    end
     @music.save()
   end
 
