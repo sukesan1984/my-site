@@ -1,0 +1,3 @@
+[submodule "public/games/DungeonRaidLike"]
+	path = public/games/DungeonRaidLike
+	url = git@github.com:sukesan1984/DungeonRaidLikeGame.git
