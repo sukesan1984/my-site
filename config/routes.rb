@@ -10,6 +10,11 @@ MySite::Application.routes.draw do
 
   resources :games
 
+  resources :scores do
+  end
+
+  resources :dungeon_raid
+
   root :to => 'musics#index'
 
 

@@ -1,0 +1,31 @@
+<%= render 'shared/common_header' %>
+
+<div class="container">
+    <div class="hero-unit">
+        <title>Dungeon Raid Like Game</title>
+        <h1>Dungeon Raid Like Game</h1>
+
+
+        <html>
+        </html>
+    </div>
+    <%= link_to "back to game",
+    "dungeon_raid",
+    :class => 'btn btn-link' %><br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>score</th>
+        <tr>
+      </thead>
+      <tbody>
+        <% @scores.each do |score| %>
+            <tr>
+                <td><%= score.name %></td>
+                <td><%= score.score %></td>
+            </tr>
+            <% end %>
+      </tbody>
+      </table>
+</div>
