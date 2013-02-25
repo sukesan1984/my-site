@@ -1,3 +1,6 @@
 [submodule "public/games/DungeonRaidLike"]
 	path = public/games/DungeonRaidLike
 	url = git@github.com:sukesan1984/DungeonRaidLikeGame.git
+[submodule "public/games/bejeweled"]
+	path = public/games/bejeweled
+	url = git@github.com:kanonrie/bejeweled.git
